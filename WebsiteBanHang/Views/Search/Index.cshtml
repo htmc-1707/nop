@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="col-xl-6 col-lg-5 col-md-6">
+   @using (Html.BeginForm("listing_gird", "Home", FormMethod.Get, new { @class = "search-header" }))
+    {
+        <form action="#" class="search-header">
+            <div class="input-group w-100">
+
+                <select class="custom-select border-right">
+                    <option value="">Tất cả</option>
+                    <option value="">All type</option>
+                    <option value="codex">Special</option>
+                    <option value="comments">Only best</option>
+                    <option value="content">Latest</option>
+                </select>
+                <input type="text" value="@ViewBag.CurrentFilter" name="SearchString" class="form-control" placeholder="Tìm kiếm">
+
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">
+                        <i class="fa fa-search"></i> Tìm kiếm
+                    </button>
+                </div>
+
+            </div>
+        </form> <!-- search-wrap .end// -->
+    }
+</div> <!-- col.// -->

@@ -1,0 +1,84 @@
+﻿@model WebsiteBanHang.Connect.Product
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h2 class="font-weight-bold" style="color: #0a0f1c;">CHI TIẾT SẢN PHẨM</h2>
+                </div>
+
+                <div class="col-md-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#" style="color: #1b2a41;">Home</a></li>
+                        <li class="breadcrumb-item active" style="color: #0a0f1c;">E-commerce</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- Product Details -->
+                <div class="col-md-6">
+                    <div class="card" style="border-color: #0a0f1c;">
+                        <div class="card-header" style="background-color: #1b2a41; color: white;">
+                            <h3>@Html.DisplayFor(model => model.Name)</h3>
+                        </div>
+                        <div class="card-body" style="color: #0a0f1c;">
+                            <p><strong>Mô tả:</strong> @Html.DisplayFor(model => model.Description)</p>
+                            <p><strong>Chi tiết:</strong> @Html.DisplayFor(model => model.Details)</p>
+                            <p><strong>Giá:</strong> @Html.DisplayFor(model => model.Price) VND</p>
+                            <p><strong>Thương hiệu:</strong> @Html.DisplayFor(model => model.Brand.Name)</p>
+                            <p><strong>Danh mục:</strong> @Html.DisplayFor(model => model.Category.Name)</p>
+                        </div>
+                        <div class="card-footer text-right">
+                            @Html.ActionLink(
+                                "Chỉnh sửa",
+                                "Edit",
+                                new { id = Model.Id },
+                                new
+                                    {
+                                    @class = "btn",
+                                    style = "background-color: #1b2a41; border-color: #0a0f1c; color: white; font-weight: bold; padding: 10px 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); border-width: 2px;"
+                                })
+                            @Html.ActionLink(
+                                "Quay lại",
+                                "Index",
+                                null,
+                                new
+                                    {
+                                    @class = "btn",
+                                    style = "background-color: #1b2a41; border-color: #0a0f1c; color: white; font-weight: bold; padding: 10px 20px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); border-width: 2px;"
+                                })
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Images -->
+                <div class="col-md-6">
+                    <div class="card" style="border-color: #0a0f1c;">
+                        <div class="card-body text-center">
+                            <img src="@Url.Content("~/Content/images/product/" + Model.Images)"
+                                 alt="@Model.Name" width="500" height="500" class="img-fluid rounded"
+                                 style="border: 2px solid #0a0f1c;" />
+                            <div class="d-flex justify-content-center">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</div>

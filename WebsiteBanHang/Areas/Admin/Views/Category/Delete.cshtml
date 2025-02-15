@@ -1,0 +1,59 @@
+﻿@model WebsiteBanHang.Connect.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h3>Bạn có muốn xóa danh mục này?</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Xóa danh mục</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="col-md-8 offset-md-2">
+            <div class="card card-danger">
+                <div class="card-body">
+                    <dl class="row">
+                        <!-- Tên danh mục -->
+                        <dt class="col-md-3">Tên danh mục</dt>
+                        <dd class="col-md-9">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+
+                        <!-- Ảnh danh mục -->
+                        <dt class="col-md-3">Ảnh</dt>
+                        <dd class="col-md-9">
+                            <img src="@Url.Content("~/Content/images/categories/" + Model.Image)" width="150" height="150" class="img-thumbnail">
+                        </dd>
+                    </dl>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group row">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" value="Xóa" class="btn btn-danger btn-lg mr-3" />
+                                @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-primary btn-lg" })
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

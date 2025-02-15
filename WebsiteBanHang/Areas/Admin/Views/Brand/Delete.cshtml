@@ -1,0 +1,66 @@
+﻿@model WebsiteBanHang.Connect.Brand
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h3>Bạn có muốn xóa thương hiệu này?</h3>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                        <li class="breadcrumb-item active">Hình thức</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <section class="content">
+        <div class="col-md-6 mx-auto">
+            <div class="card card-danger">
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <!-- Tên thương hiệu -->
+                        <div class="col-12">
+                            <h4 class="text-danger"><strong>Tên thương hiệu:</strong></h4>
+                            <p>@Html.DisplayFor(model => model.Name)</p>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <!-- Ảnh thương hiệu -->
+                        <div class="col-12">
+                            <h4 class="text-danger"><strong>Ảnh thương hiệu:</strong></h4>
+                            <img src="@Url.Content("~/Content/images/brand/" + Model.Image)" class="img-fluid" style="max-width: 150px; max-height: 150px;">
+                        </div>
+                    </div>
+
+                    <!-- Form xóa -->
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <!-- Nút Xóa -->
+                                    <input type="submit" value="Xóa" class="btn btn-danger" />
+
+                                    <!-- Nút Trở lại -->
+                                    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn btn-outline-primary" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

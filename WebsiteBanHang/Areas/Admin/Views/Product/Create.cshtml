@@ -1,0 +1,105 @@
+﻿@model WebsiteBanHang.Connect.Product
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper py-4 bg-light">
+    <div class="container">
+        <!-- Page Header -->
+        <div class="row mb-4">
+            <div class="col-sm-6">
+                <h2 class="text-primary font-weight-bold" style="color: #1c1c1c;">THÊM SẢN PHẨM</h2>
+            </div>
+        </div>
+
+        <!-- Form -->
+       @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="card shadow">
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <!-- Tên sản phẩm -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Name, "Tên sản phẩm", new { @class = "form-label" })
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên sản phẩm" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Mô tả -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Description, "Mô tả", new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", rows = 3, placeholder = "Nhập mô tả sản phẩm", id = "description" })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                <script>
+                    CKEDITOR.replace("description");
+                </script>
+            </div>
+
+            <!-- Chi tiết -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Details, "Chi tiết", new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Details, new { @class = "form-control", rows = 5, placeholder = "Nhập chi tiết sản phẩm", id = "details" })
+                @Html.ValidationMessageFor(model => model.Details, "", new { @class = "text-danger" })
+                <script>
+                    CKEDITOR.replace("details");
+                </script>
+            </div>
+
+            <!-- Giá -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Price, "Giá (VND)", new { @class = "form-label" })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập giá sản phẩm" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Danh mục -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.CategoryId, "Danh mục", new { @class = "form-label" })
+                @Html.DropDownList("CategoryId", (SelectList)ViewBag.CategoryList, "Chọn danh mục", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Thương hiệu -->
+            <div class="mb-3">
+                @Html.LabelFor(model => model.BrandId, "Thương hiệu", new { @class = "form-label" })
+                @Html.DropDownList("BrandId", (SelectList)ViewBag.BrandList, "Chọn thương hiệu", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+            </div>
+
+            <!-- Hình ảnh -->
+            <div class="mb-3">
+                @Html.Label("Ảnh sản phẩm", new { @class = "form-label" })
+                <input type="file" name="ImageUpload" class="form-control" accept="image/*" />
+                @ViewBag.Thongbao
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="card-footer text-right">
+            <button type="submit"
+                    class="btn btn-primary"
+                    style="background-color: pink; border-color: pink; color: white; font-weight: bold;">
+                Thêm sản phẩm
+            </button>
+            @Html.ActionLink(
+                        "Quay lại danh sách",
+                        "Index",
+                        null,
+                        new
+                        {
+                            @class = "btn btn-secondary",
+                            style = "background-color: lightblue; border-color: lightblue; color: white; font-weight: bold;"
+                        })
+        </div>
+
+
+    </div>
+        }
+    </div>
+</div>
